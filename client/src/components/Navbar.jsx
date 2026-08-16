@@ -1,71 +1,53 @@
-import { FiLinkedin, FiGithub, FiMail, FiMenu, FiX } from 'react-icons/fi';
+import { FiLinkedin, FiGithub, FiMail } from 'react-icons/fi';
+import { motion } from 'framer-motion';
 import { LINKS } from '../config/links';
 
-const Navbar = ({ sidebarOpen, setSidebarOpen }) => {
+const Navbar = () => {
   const letters = 'AYUSH'.split('');
 
   return (
     <header className="fixed top-0 right-0 left-0 lg:left-64 h-16 glass-nav z-40 px-4 md:px-8 flex items-center justify-between transition-all duration-300">
       <div className="flex items-center gap-3">
-        <button
-          className="lg:hidden p-2 rounded-xl text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-          aria-label="Toggle Navigation"
-          id="hamburger-btn"
-        >
-          {sidebarOpen ? <FiX size={22} className="text-purple-400" /> : <FiMenu size={22} />}
-        </button>
-
-        {/* Brand Logo */}
-        <div className="flex items-center gap-1 font-bold text-xl md:text-2xl tracking-wider select-none">
+        {/* Animated Brand Logo */}
+        <div className="flex items-center gap-1 font-extrabold text-xl md:text-2xl tracking-wider select-none group">
           {letters.map((l, i) => (
-            <span
+            <motion.span
               key={i}
-              className="inline-block gradient-text hover:scale-125 transition-transform duration-200 cursor-pointer"
-              style={{ animationDelay: `${i * 0.1}s` }}
+              whileHover={{ scale: 1.35, y: -2, rotate: (i % 2 === 0 ? 5 : -5) }}
+              transition={{ type: 'spring', stiffness: 400 }}
+              className="inline-block gradient-text cursor-pointer drop-shadow-[0_0_10px_rgba(168,85,247,0.4)]"
             >
               {l}
-            </span>
+            </motion.span>
           ))}
-          <span className="text-purple-500 font-mono text-sm ml-1 animate-pulse">.dev</span>
+          <span className="text-purple-400 font-mono text-xs md:text-sm ml-1 px-1.5 py-0.5 rounded-md bg-purple-500/10 border border-purple-500/30 animate-pulse drop-shadow-[0_0_8px_rgba(168,85,247,0.6)]">
+            .dev
+          </span>
         </div>
       </div>
 
-      {/* Social Icons */}
+      {/* Social Icons with Micro-Interactions */}
       <nav className="flex items-center gap-2 md:gap-3" aria-label="Social links">
-        <a
-          href={LINKS.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:border-purple-500/50 hover:bg-purple-500/10 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all duration-200"
-          aria-label="LinkedIn"
-          id="nav-linkedin"
-          title="LinkedIn Profile"
-        >
-          <FiLinkedin size={18} />
-        </a>
-        <a
-          href={LINKS.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:border-purple-500/50 hover:bg-purple-500/10 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all duration-200"
-          aria-label="GitHub"
-          id="nav-github"
-          title="GitHub Profile"
-        >
-          <FiGithub size={18} />
-        </a>
-        <a
-          href={LINKS.email}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:border-pink-500/50 hover:bg-pink-500/10 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(236,72,153,0.3)] transition-all duration-200"
-          aria-label="Email"
-          id="nav-email"
-          title="Send Email"
-        >
-          <FiMail size={18} />
-        </a>
+        {[
+          { href: LINKS.linkedin, icon: FiLinkedin, label: 'LinkedIn', id: 'nav-linkedin', glow: 'hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] hover:border-purple-400/60' },
+          { href: LINKS.github, icon: FiGithub, label: 'GitHub', id: 'nav-github', glow: 'hover:shadow-[0_0_20px_rgba(236,72,153,0.5)] hover:border-pink-400/60' },
+          { href: LINKS.email, icon: FiMail, label: 'Email', id: 'nav-email', glow: 'hover:shadow-[0_0_20px_rgba(99,102,241,0.5)] hover:border-indigo-400/60' },
+        ].map(({ href, icon: Icon, label, id, glow }) => (
+          <motion.a
+            key={id}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.12, y: -2 }}
+            whileTap={{ scale: 0.9 }}
+            className={`p-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 transition-all duration-200 ${glow}`}
+            aria-label={label}
+            id={id}
+            title={`${label} Profile`}
+          >
+            <Icon size={18} />
+          </motion.a>
+        ))}
       </nav>
     </header>
   );

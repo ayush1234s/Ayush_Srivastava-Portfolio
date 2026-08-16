@@ -8,25 +8,12 @@ const navItems = [
   { to: '/contact', icon: <FiMail size={20} />, label: 'Contact', badge: null },
 ];
 
-const Sidebar = ({ open, onClose }) => {
+const Sidebar = () => {
   return (
-    <>
-      {/* Mobile Backdrop Overlay */}
-      {open && (
-        <div
-          className="fixed inset-0 bg-black/70 backdrop-blur-md z-40 lg:hidden transition-opacity duration-300"
-          onClick={onClose}
-          aria-hidden="true"
-        />
-      )}
-
-      {/* Sidebar Navigation */}
-      <aside
-        className={`fixed top-0 left-0 h-screen w-64 glass-sidebar z-50 flex flex-col justify-between p-6 transition-transform duration-300 ease-out ${
-          open ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
-        }`}
-        aria-label="Sidebar navigation"
-      >
+    <aside
+      className="fixed top-0 left-0 h-screen w-64 glass-sidebar z-50 hidden lg:flex flex-col justify-between p-6 transition-all duration-300"
+      aria-label="Sidebar navigation"
+    >
         <div>
           {/* User Profile Header */}
           <div className="flex items-center gap-3.5 pb-6 mb-6 border-b border-white/10">
@@ -54,7 +41,6 @@ const Sidebar = ({ open, onClose }) => {
                 key={to}
                 to={to}
                 end={to === '/'}
-                onClick={onClose}
                 id={`nav-${label.toLowerCase()}`}
                 className={({ isActive }) =>
                   `flex items-center gap-3.5 px-3.5 py-3 rounded-xl font-medium text-sm transition-all duration-200 group relative ${
@@ -96,8 +82,7 @@ const Sidebar = ({ open, onClose }) => {
           </div>
         </div>
       </aside>
-    </>
-  );
-};
+    );
+  };
 
 export default Sidebar;
