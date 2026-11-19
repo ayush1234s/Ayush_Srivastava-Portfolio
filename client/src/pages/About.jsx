@@ -52,7 +52,7 @@ const About = () => {
             <div className="relative w-44 h-44 mx-auto mb-6">
               <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-500 animate-spin blur-sm" style={{ animationDuration: '6s' }} />
               <img
-                src="/ayush.jpg"
+                src={about.imageUrl || '/ayush.jpg'}
                 alt="Ayush Srivastava"
                 className="relative w-full h-full object-cover rounded-full border-4 border-slate-950 p-1 bg-slate-900 shadow-2xl"
               />
