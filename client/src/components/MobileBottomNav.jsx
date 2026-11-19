@@ -13,7 +13,10 @@ const MobileBottomNav = () => {
   const location = useLocation();
 
   return (
-    <div className="fixed bottom-3 left-3 right-3 z-50 lg:hidden max-w-md mx-auto">
+      <div
+        className="fixed left-3 right-3 z-50 lg:hidden max-w-md mx-auto"
+        style={{ bottom: 'calc(env(safe-area-inset-bottom, 0px) + 0.75rem)' }}
+      >
       {/* Outer Neon Gradient Glow Aura */}
       <div className="absolute -inset-1 bg-gradient-to-r from-purple-600/40 via-pink-600/40 to-cyan-500/40 rounded-3xl blur-lg opacity-85 animate-pulse-glow pointer-events-none" />
 

@@ -8,7 +8,6 @@ yarn-debug.log*
 node_modules
 dist
 dist-ssr
-hosting
 
 # Environment variables — DO NOT commit
 .env

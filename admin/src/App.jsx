@@ -9,7 +9,7 @@ import ProjectsManager from './pages/ProjectsManager';
 import ContactMessages from './pages/ContactMessages';
 import './index.css';
 
-function App() {
+export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter basename="/admin">
@@ -41,5 +41,3 @@ function App() {
     </AuthProvider>
   );
 }
-
-export default App;

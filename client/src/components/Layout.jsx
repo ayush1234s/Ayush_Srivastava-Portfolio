@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
       <Sidebar />
       <Navbar />
 
-      <main className="lg:ml-64 pt-16 pb-20 lg:pb-8 min-h-[calc(100vh-4rem)] relative z-10">
+      <main className="lg:ml-64 pt-16 pb-[calc(6rem+env(safe-area-inset-bottom,0px))] lg:pb-8 min-h-[calc(100vh-4rem)] relative z-10">
         {children}
       </main>
 
